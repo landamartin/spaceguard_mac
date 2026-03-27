@@ -1,0 +1,40 @@
+# Build SpaceGuard.app on version tags and attach a zip to the GitHub Release.
+
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v4
+        with:
+          version: "latest"
+
+      - name: Install dependencies
+        run: uv sync --all-groups
+
+      - name: Build .app
+        run: chmod +x scripts/build_mac_app.sh && ./scripts/build_mac_app.sh
+
+      - name: Zip app bundle
+        run: |
+          cd dist
+          zip -r9 "../SpaceGuard-${{ github.ref_name }}-macos.zip" SpaceGuard.app
+
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: SpaceGuard-${{ github.ref_name }}-macos.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

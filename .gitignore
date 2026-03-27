@@ -1,3 +1,5 @@
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -99,11 +101,23 @@ celerybeat-schedule
 # Environments
 .env
 .venv
+.uv/
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Local agent notes (see docs/AGENT_PROGRESS.md.example)
+docs/AGENT_PROGRESS.md
+
+# SpaceGuard / local builds
+resources/SpaceGuard.iconset/
+dist/
+*.app
+nuitka-*.xml
+nuitka-crash-report.xml
+.ruff_cache/
 
 # Spyder project settings
 .spyderproject
