@@ -162,9 +162,7 @@ def restart_noisy_daemons_via_osascript() -> tuple[bool, str]:
     Ask macOS for admin once and run killall for analyticsd/searchpartyd.
     Returns (success, message).
     """
-    inner = (
-        "killall analyticsd 2>/dev/null; killall searchpartyd 2>/dev/null; exit 0"
-    )
+    inner = "killall analyticsd 2>/dev/null; killall searchpartyd 2>/dev/null; exit 0"
     script = f'do shell script "{inner}" with administrator privileges'
     try:
         subprocess.run(
