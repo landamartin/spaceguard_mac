@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from enum import Enum
+from enum import StrEnum
 from typing import Any
 
 from spaceguard.monitor import DiskSwapMetrics
 
 
-class TrayLevel(str, Enum):
+class TrayLevel(StrEnum):
     OK = "ok"
     WARNING = "warning"
     CRITICAL = "critical"
