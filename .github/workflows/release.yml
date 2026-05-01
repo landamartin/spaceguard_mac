@@ -32,7 +32,7 @@ jobs:
           zip -r9 "../SpaceGuard-${{ github.ref_name }}-macos.zip" SpaceGuard.app
 
       - name: Upload release assets
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: SpaceGuard-${{ github.ref_name }}-macos.zip
           generate_release_notes: true
